@@ -1,6 +1,6 @@
 package com.gildedrose
 
-interface BaseUpdater {
+interface BaseQualityUpdater {
 
     fun updateQuality(item: Item)
 

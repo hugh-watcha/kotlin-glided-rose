@@ -1,6 +1,6 @@
 package com.gildedrose
 
-class SulfurasUpdater : BaseUpdater {
+class SulfurasQualityUpdater : BaseQualityUpdater {
 
     override fun updateQuality(item: Item) = Unit
 

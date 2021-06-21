@@ -26,10 +26,10 @@ class GildedRose(var items: Array<Item>) {
     }
 
     private fun getBaseUpdaterByItemName(item: Item) = when (item.name) {
-        NAME_AGED_BRIE -> AgedBrieUpdater()
-        NAME_BACKSTAGE_PASSES -> BackStagePassesUpdater()
-        NAME_SULFURAS -> SulfurasUpdater()
-        else -> NormalUpdater()
+        NAME_AGED_BRIE -> AgedBrieQualityUpdater()
+        NAME_BACKSTAGE_PASSES -> BackStagePassesQualityUpdater()
+        NAME_SULFURAS -> SulfurasQualityUpdater()
+        else -> NormalQualityUpdater()
     }
 
     companion object {

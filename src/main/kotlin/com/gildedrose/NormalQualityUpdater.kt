@@ -1,6 +1,6 @@
 package com.gildedrose
 
-open class NormalUpdater : BaseUpdater {
+open class NormalQualityUpdater : BaseQualityUpdater {
 
     override fun updateQuality(item: Item) {
         if (item.quality > 0) {
