@@ -11,30 +11,25 @@ class GildedRose(var items: Array<Item>) {
     }
 
     private fun updateQuality(item: Item) {
-        when (item.name) {
-            NAME_AGED_BRIE -> AgedBrieUpdater().updateQuality(item)
-            NAME_BACKSTAGE_PASSES -> BackStagePassesUpdater().updateQuality(item)
-            NAME_SULFURAS -> SulfurasUpdater().updateQuality(item)
-            else -> NormalUpdater().updateQuality(item)
-        }
+        val updater = getBaseUpdaterByItemName(item)
+        updater.updateQuality(item)
     }
 
     private fun decreaseSellIn(item: Item) {
-        when (item.name) {
-            NAME_AGED_BRIE -> AgedBrieUpdater().decreaseSellIn(item)
-            NAME_BACKSTAGE_PASSES -> BackStagePassesUpdater().decreaseSellIn(item)
-            NAME_SULFURAS -> SulfurasUpdater().decreaseSellIn(item)
-            else -> NormalUpdater().decreaseSellIn(item)
-        }
+        val updater = getBaseUpdaterByItemName(item)
+        updater.decreaseSellIn(item)
     }
 
     private fun updateQualityWhenSellOut(item: Item) {
-        when (item.name) {
-            NAME_AGED_BRIE -> AgedBrieUpdater().updateQualityWhenSellOut(item)
-            NAME_BACKSTAGE_PASSES -> BackStagePassesUpdater().updateQualityWhenSellOut(item)
-            NAME_SULFURAS -> SulfurasUpdater().updateQualityWhenSellOut(item)
-            else -> NormalUpdater().updateQualityWhenSellOut(item)
-        }
+        val updater = getBaseUpdaterByItemName(item)
+        updater.updateQualityWhenSellOut(item)
+    }
+
+    private fun getBaseUpdaterByItemName(item: Item) = when (item.name) {
+        NAME_AGED_BRIE -> AgedBrieUpdater()
+        NAME_BACKSTAGE_PASSES -> BackStagePassesUpdater()
+        NAME_SULFURAS -> SulfurasUpdater()
+        else -> NormalUpdater()
     }
 
     companion object {
