@@ -32,6 +32,20 @@ internal class SulfurasItemTest {
         // then
         assertEquals(1, item.sellIn)
     }
+
+    @Test
+    fun `updateQuality 호출 시 sellIn 0보다 작아도 sellIn이 변하지 않는다`() {
+        // given
+        val item = Item("Sulfuras, Hand of Ragnaros", -1, 6)
+        val items = arrayOf(item)
+        val app = GildedRose(items)
+
+        // when
+        app.updateQuality()
+
+        // then
+        assertEquals(-1, item.sellIn)
+    }
 }
 
 

@@ -21,8 +21,6 @@ class BackStagePassesQualityUpdater : QualityUpdater {
     }
 
     override fun updateQualityWhenSellOut(item: Item) {
-        if (item.sellIn < 0) {
-            item.quality = item.quality - item.quality
-        }
+        item.quality = 0
     }
 }
