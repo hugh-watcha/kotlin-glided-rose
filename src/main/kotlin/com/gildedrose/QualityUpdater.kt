@@ -1,6 +1,12 @@
 package com.gildedrose
 
-interface BaseQualityUpdater {
+interface QualityUpdater {
+
+    fun updateItemQuality(item: Item) {
+        updateQuality(item)
+        decreaseSellIn(item)
+        updateQualityWhenSellOut(item)
+    }
 
     fun updateQuality(item: Item)
 
@@ -9,4 +15,5 @@ interface BaseQualityUpdater {
     }
 
     fun updateQualityWhenSellOut(item: Item)
+
 }

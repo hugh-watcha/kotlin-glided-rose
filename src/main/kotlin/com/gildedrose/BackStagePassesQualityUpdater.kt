@@ -1,6 +1,6 @@
 package com.gildedrose
 
-class BackStagePassesQualityUpdater : BaseQualityUpdater {
+class BackStagePassesQualityUpdater : QualityUpdater {
 
     override fun updateQuality(item: Item) {
         if (item.quality < 50) {
@@ -22,7 +22,6 @@ class BackStagePassesQualityUpdater : BaseQualityUpdater {
 
     override fun updateQualityWhenSellOut(item: Item) {
         if (item.sellIn < 0) {
-
             item.quality = item.quality - item.quality
         }
     }

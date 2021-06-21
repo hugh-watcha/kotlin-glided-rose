@@ -1,6 +1,6 @@
 package com.gildedrose
 
-class AgedBrieQualityUpdater : BaseQualityUpdater {
+class AgedBrieQualityUpdater : QualityUpdater {
 
     override fun updateQuality(item: Item) {
         if (item.quality < 50) {
