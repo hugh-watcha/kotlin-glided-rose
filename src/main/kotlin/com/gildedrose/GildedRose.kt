@@ -14,9 +14,7 @@ class GildedRose(var items: Array<Item>) {
         when (item.name) {
             NAME_AGED_BRIE -> AgedBrieUpdater().updateQuality(item)
             NAME_BACKSTAGE_PASSES -> BackStagePassesUpdater().updateQuality(item)
-            NAME_SULFURAS -> {
-
-            }
+            NAME_SULFURAS -> SulfurasUpdater().updateQuality(item)
             else -> NormalUpdater().updateQuality(item)
         }
     }
@@ -25,8 +23,7 @@ class GildedRose(var items: Array<Item>) {
         when (item.name) {
             NAME_AGED_BRIE -> AgedBrieUpdater().decreaseSellIn(item)
             NAME_BACKSTAGE_PASSES -> BackStagePassesUpdater().decreaseSellIn(item)
-            NAME_SULFURAS -> {
-            }
+            NAME_SULFURAS -> SulfurasUpdater().decreaseSellIn(item)
             else -> NormalUpdater().decreaseSellIn(item)
         }
     }
@@ -35,8 +32,7 @@ class GildedRose(var items: Array<Item>) {
         when (item.name) {
             NAME_AGED_BRIE -> AgedBrieUpdater().updateQualityWhenSellOut(item)
             NAME_BACKSTAGE_PASSES -> BackStagePassesUpdater().updateQualityWhenSellOut(item)
-            NAME_SULFURAS -> {
-            }
+            NAME_SULFURAS -> SulfurasUpdater().updateQualityWhenSellOut(item)
             else -> NormalUpdater().updateQualityWhenSellOut(item)
         }
     }
