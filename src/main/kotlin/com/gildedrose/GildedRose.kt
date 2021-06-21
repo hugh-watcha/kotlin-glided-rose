@@ -37,11 +37,7 @@ class GildedRose(var items: Array<Item>) {
             NAME_SULFURAS -> {
 
             }
-            else -> {
-                if (item.quality > 0) {
-                    item.quality = item.quality - 1
-                }
-            }
+            else -> NormalUpdater().updateQuality(item)
         }
     }
 
@@ -49,9 +45,7 @@ class GildedRose(var items: Array<Item>) {
         when (item.name) {
             NAME_SULFURAS -> {
             }
-            else -> {
-                item.sellIn = item.sellIn - 1
-            }
+            else -> NormalUpdater().decreaseSellIn(item)
         }
     }
 
@@ -72,13 +66,7 @@ class GildedRose(var items: Array<Item>) {
             }
             NAME_SULFURAS -> {
             }
-            else -> {
-                if (item.sellIn < 0) {
-                    if (item.quality > 0) {
-                        item.quality = item.quality - 1
-                    }
-                }
-            }
+            else -> NormalUpdater().updateQualityWhenSellOut(item)
         }
     }
 
