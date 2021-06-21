@@ -1,12 +1,19 @@
 package com.gildedrose
 
+import com.gildedrose.QualityUpdater.Companion.MAX_QUALITY
+
 class AgedBrieQualityUpdater : QualityUpdater {
 
     override fun updateQuality(item: Item) {
-        item.quality = 50.coerceAtMost(item.quality + 1)
+        increaseQuality(item)
     }
 
     override fun updateQualityWhenSellOut(item: Item) {
-        item.quality = 50.coerceAtMost(item.quality + 1)
+        increaseQuality(item)
     }
+
+    private fun increaseQuality(item: Item) {
+        item.quality = (item.quality + 1).coerceAtMost(MAX_QUALITY)
+    }
+
 }

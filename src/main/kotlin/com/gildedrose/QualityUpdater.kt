@@ -16,10 +16,12 @@ interface QualityUpdater {
         item.sellIn = item.sellIn - 1
     }
 
-    fun isSellOut(item: Item): Boolean {
-        return item.sellIn < 0
-    }
+    fun isSellOut(item: Item): Boolean = item.sellIn < 0
 
     fun updateQualityWhenSellOut(item: Item)
 
+    companion object {
+        const val MIN_QUALITY = 0
+        const val MAX_QUALITY = 50
+    }
 }
