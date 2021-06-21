@@ -12,11 +12,7 @@ class GildedRose(var items: Array<Item>) {
 
     private fun updateQuality(item: Item) {
         when (item.name) {
-            NAME_AGED_BRIE -> {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1
-                }
-            }
+            NAME_AGED_BRIE -> AgedBrieUpdater().updateQuality(item)
             NAME_BACKSTAGE_PASSES -> {
                 if (item.quality < 50) {
                     item.quality = item.quality + 1
@@ -43,6 +39,7 @@ class GildedRose(var items: Array<Item>) {
 
     private fun decreaseSellIn(item: Item) {
         when (item.name) {
+            NAME_AGED_BRIE -> AgedBrieUpdater().decreaseSellIn(item)
             NAME_SULFURAS -> {
             }
             else -> NormalUpdater().decreaseSellIn(item)
@@ -51,13 +48,7 @@ class GildedRose(var items: Array<Item>) {
 
     private fun updateQualityWhenSellOut(item: Item) {
         when (item.name) {
-            NAME_AGED_BRIE -> {
-                if (item.sellIn < 0) {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1
-                    }
-                }
-            }
+            NAME_AGED_BRIE -> AgedBrieUpdater().updateQualityWhenSellOut(item)
             NAME_BACKSTAGE_PASSES -> {
                 if (item.sellIn < 0) {
 
