@@ -5,20 +5,30 @@ import org.junit.jupiter.api.Test
 
 class GildedRoseTest {
 
-    // 처음의 접근은, 일단 테스트 item set 을 모두 마련하려고 하다가..
-    // 생각해보니 일단 목적은 테스트 커버리지 100을 만드는 것
-    // 흠.. 그럼 일단은 각 케이스별로 아이템을 구성해서 테스트해보자.
-    // 여전히 고민은 되는 게, 더 다양한 케이스의 아이템들을 테스트해볼 필요가 있지 않을까..?? 단순히 100%가 전부는 아닌 거 같다.
+    /*
+    * 첫날의 고민
+    *
+    *  처음의 접근은, 일단 테스트 item set 을 모두 마련하려고 하다가..
+     생각해보니 일단 목적은 테스트 커버리지 100을 만드는 것
+     흠.. 그럼 일단은 각 케이스별로 아이템을 구성해서 테스트해보자.
+     여전히 고민은 되는 게, 더 다양한 케이스의 아이템들을 테스트해볼 필요가 있지 않을까..?? 단순히 100%가 전부는 아닌 거 같다.
 
-    // name = "Aged Brie"
-    // name = "Backstage passes to a TAFKAL80ETC concert"
-    // name = "Sulfuras, Hand of Ragnaros"
-    // name = "normal"
+     name = "Aged Brie"
+     name = "Backstage passes to a TAFKAL80ETC concert"
+     name = "Sulfuras, Hand of Ragnaros"
+     name = "normal"
 
-    // sellIn 15, 10, 8, 5, 3, 0
-    // quality > sellIn, quality == sellIn, quality < sellIn
+     sellIn 15, 10, 8, 5, 3, 0
+     quality > sellIn, quality == sellIn, quality < sellIn
 
-    // given, when, then
+     given, when, then
+    * */
+
+    /*
+    * 두번째 날의 고민 - 코드 리팩토링 하면서
+    * sellIn 을 어느 타이밍에 감소시키느냐에 따라 기준이 되는 day 값이 달라진다.
+    *
+    * */
 
     @Test
     fun `일반 아이템 하루 지나면 quality 가 1 감소해야 한다`() {
@@ -124,6 +134,26 @@ class GildedRoseTest {
         assertEquals(0, gildedRose.items.first().quality)
     }
 
+    @Test
+    fun `Conjured 는 SellIn 이 0 초과일 때 quality 가 2 감소한다`() {
+        val quality = 10
+        val conjured = Item(ITEM_NAME_CONJURED, 1, quality)
+        val gildedRose = createGildedRoseWithOneItem(conjured)
+
+        gildedRose.computeDaysElapsing(1)
+        assertEquals(quality - 2, gildedRose.items.first().quality)
+    }
+
+    @Test
+    fun `Conjured 는 SellIn 이 0 이하일 때 quality 가 4 감소한다`() {
+        val quality = 10
+        val conjured = Item(ITEM_NAME_CONJURED, 0, quality)
+        val gildedRose = createGildedRoseWithOneItem(conjured)
+
+        gildedRose.computeDaysElapsing(1)
+        assertEquals(quality - 4, gildedRose.items.first().quality)
+    }
+
     private fun GildedRose.computeDaysElapsing(days: Int) {
         repeat(days) {
             updateQuality()
@@ -137,5 +167,6 @@ class GildedRoseTest {
         private const val ITEM_NAME_BRIE = "Aged Brie"
         private const val ITEM_NAME_SULFURAS = "Sulfuras, Hand of Ragnaros"
         private const val ITEM_NAME_BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert"
+        private const val ITEM_NAME_CONJURED = "Conjured"
     }
 }
