@@ -23,9 +23,9 @@ data class Item(
         sellIn -= DEFAULT_DECREASE_SELL_IN
     }
 
-    fun sellOutBefore(days: Int): Boolean = sellIn <= days
+    fun isBeforeExpired(days: Int): Boolean = sellIn <= days
 
-    fun isSellOut(): Boolean = sellIn < SELLOUT_DAYS
+    fun isExpired(): Boolean = sellIn < EXPIRED_DAYS
 
     companion object {
         private const val MIN_QUALITY = 0
@@ -33,7 +33,7 @@ data class Item(
         private const val DEFAULT_QUALITY = 0
         private const val DEFAULT_INCREASE_QUALITY = 1
         private const val DEFAULT_DECREASE_QUALITY = 1
-        private const val SELLOUT_DAYS = 0
+        private const val EXPIRED_DAYS = 0
         private const val DEFAULT_DECREASE_SELL_IN = 1
     }
 }

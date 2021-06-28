@@ -5,16 +5,16 @@ class BackStagePassesQualityUpdater : QualityUpdater {
     override fun updateQuality(item: Item) = item.increaseQuality(getIncreaseQuality(item))
 
     private fun getIncreaseQuality(item: Item) = when {
-        sellOutBeforeFiveDays(item) -> FIVE_DAYS_INCREASE_QUALITY
-        sellOutBeforeTenDays(item) -> TEN_DAYS_INCREASE_QUALITY
+        isExpiredBeforeFiveDays(item) -> FIVE_DAYS_INCREASE_QUALITY
+        isExpiredBeforeTenDays(item) -> TEN_DAYS_INCREASE_QUALITY
         else -> NORMAL_DAYS_INCREASE_QUALITY
     }
 
-    private fun sellOutBeforeFiveDays(item: Item) = item.sellOutBefore(FIVE_DAYS)
+    private fun isExpiredBeforeFiveDays(item: Item) = item.isBeforeExpired(FIVE_DAYS)
 
-    private fun sellOutBeforeTenDays(item: Item) = item.sellOutBefore(TEN_DAYS)
+    private fun isExpiredBeforeTenDays(item: Item) = item.isBeforeExpired(TEN_DAYS)
 
-    override fun updateQualityWhenSellOut(item: Item) = item.initQuality()
+    override fun updateQualityAfterExpired(item: Item) = item.initQuality()
 
     companion object {
         private const val FIVE_DAYS = 5

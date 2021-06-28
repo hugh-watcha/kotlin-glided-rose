@@ -6,5 +6,5 @@ class SulfurasQualityUpdater : QualityUpdater {
 
     override fun decreaseSellIn(item: Item) = Unit
 
-    override fun updateQualityWhenSellOut(item: Item) = Unit
+    override fun updateQualityAfterExpired(item: Item) = Unit
 }
