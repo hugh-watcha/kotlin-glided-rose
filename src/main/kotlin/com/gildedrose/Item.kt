@@ -1,7 +1,5 @@
 package com.gildedrose
 
-import com.gildedrose.QualityUpdater.Companion.MAX_QUALITY
-import com.gildedrose.QualityUpdater.Companion.MIN_QUALITY
 
 data class Item(
         var name: String,
@@ -10,23 +8,32 @@ data class Item(
 ) {
 
     fun initQuality() {
-        quality = 0
+        quality = DEFAULT_QUALITY
     }
 
-    fun increaseQualityAtMost(increaseQuality: Int = 1, maxQuality: Int = MAX_QUALITY) {
-        quality = (quality + increaseQuality).coerceAtMost(maxQuality)
+    fun increaseQuality(increaseQuality: Int = DEFAULT_INCREASE_QUALITY) {
+        quality = (quality + increaseQuality).coerceAtMost(MAX_QUALITY)
     }
 
-    fun decreaseQualityAtLeast(decreaseQuality: Int = 1, minQuality: Int = MIN_QUALITY) {
-        quality = (quality - decreaseQuality).coerceAtLeast(minQuality)
+    fun decreaseQuality() {
+        quality = (quality - DEFAULT_DECREASE_QUALITY).coerceAtLeast(MIN_QUALITY)
     }
 
     fun decreaseSellIn() {
-        sellIn -= 1
+        sellIn -= DEFAULT_DECREASE_SELL_IN
     }
 
     fun sellOutBefore(days: Int): Boolean = sellIn <= days
 
-    fun isSellOut(): Boolean = sellIn < 0
+    fun isSellOut(): Boolean = sellIn < SELLOUT_DAYS
 
+    companion object {
+        private const val MIN_QUALITY = 0
+        private const val MAX_QUALITY = 50
+        private const val DEFAULT_QUALITY = 0
+        private const val DEFAULT_INCREASE_QUALITY = 1
+        private const val DEFAULT_DECREASE_QUALITY = 1
+        private const val SELLOUT_DAYS = 0
+        private const val DEFAULT_DECREASE_SELL_IN = 1
+    }
 }

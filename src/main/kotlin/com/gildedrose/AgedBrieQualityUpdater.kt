@@ -6,6 +6,6 @@ class AgedBrieQualityUpdater : QualityUpdater {
 
     override fun updateQualityWhenSellOut(item: Item) = increaseQuality(item)
 
-    private fun increaseQuality(item: Item) = item.increaseQualityAtMost()
+    private fun increaseQuality(item: Item) = item.increaseQuality()
 
 }

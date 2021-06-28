@@ -6,7 +6,6 @@ open class NormalQualityUpdater : QualityUpdater {
 
     override fun updateQualityWhenSellOut(item: Item) = decreaseQuality(item)
 
-    private fun decreaseQuality(item: Item) = item.decreaseQualityAtLeast()
-
+    private fun decreaseQuality(item: Item) = item.decreaseQuality()
 
 }

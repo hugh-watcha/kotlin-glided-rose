@@ -18,8 +18,4 @@ interface QualityUpdater {
 
     fun updateQualityWhenSellOut(item: Item)
 
-    companion object {
-        const val MIN_QUALITY = 0
-        const val MAX_QUALITY = 50
-    }
 }
