@@ -2,9 +2,13 @@ package com.gildedrose
 
 class GildedRose(var items: Array<Item>) {
 
+    private val itemDeprecationProcessors = items.map {
+        ItemDepreciationProcessorFactory.createDepreciationProcessor(it)
+    }
+
     fun updateQuality() {
-        items.forEach { item ->
-            ItemDepreciationProcessorFactory.createDepreciationProcessor(item).processDepreciationCycle()
+        itemDeprecationProcessors.forEach {
+            it.processDepreciationCycle()
         }
     }
 }
