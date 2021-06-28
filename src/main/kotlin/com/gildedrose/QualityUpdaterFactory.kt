@@ -1,7 +1,5 @@
 package com.gildedrose
 
-import java.lang.Exception
-
 class QualityUpdaterFactory {
 
     private val updaters = mapOf(
@@ -14,7 +12,7 @@ class QualityUpdaterFactory {
     fun getUpdater(name: String): QualityUpdater {
         return try {
             updaters.getValue(name)
-        } catch (ex: Exception) {
+        } catch (ex: NoSuchElementException) {
             updaters.getValue(NAME_NORMAL)
         }
     }

@@ -4,9 +4,7 @@ import com.gildedrose.QualityUpdater.Companion.MAX_QUALITY
 
 class BackStagePassesQualityUpdater : QualityUpdater {
 
-    override fun updateQuality(item: Item) {
-        item.increaseQualityAtMost(getIncreaseQuality(item), MAX_QUALITY)
-    }
+    override fun updateQuality(item: Item) = item.increaseQualityAtMost(getIncreaseQuality(item), MAX_QUALITY)
 
     private fun getIncreaseQuality(item: Item) = when {
         sellOutBeforeFiveDays(item) -> 3

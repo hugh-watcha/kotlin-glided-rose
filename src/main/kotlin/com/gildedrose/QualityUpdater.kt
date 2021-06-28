@@ -12,9 +12,7 @@ interface QualityUpdater {
 
     fun updateQuality(item: Item)
 
-    fun decreaseSellIn(item: Item) {
-        item.sellIn = item.sellIn - 1
-    }
+    fun decreaseSellIn(item: Item) = item.decreaseSellIn()
 
     fun isSellOut(item: Item): Boolean = item.isSellOut()
 

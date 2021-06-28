@@ -8,23 +8,25 @@ data class Item(
         var sellIn: Int,
         var quality: Int
 ) {
-    fun increaseQualityAtMost(increaseQuality: Int = 1, maxQuality: Int = MAX_QUALITY) {
-        quality = (quality + increaseQuality).coerceAtMost(maxQuality)
-    }
 
     fun initQuality() {
         quality = 0
+    }
+
+    fun increaseQualityAtMost(increaseQuality: Int = 1, maxQuality: Int = MAX_QUALITY) {
+        quality = (quality + increaseQuality).coerceAtMost(maxQuality)
     }
 
     fun decreaseQualityAtLeast(decreaseQuality: Int = 1, minQuality: Int = MIN_QUALITY) {
         quality = (quality - decreaseQuality).coerceAtLeast(minQuality)
     }
 
-    fun sellOutBefore(days: Int): Boolean {
-        return sellIn <= days
+    fun decreaseSellIn() {
+        sellIn -= 1
     }
 
-    fun isSellOut(): Boolean {
-        return sellIn < 0
-    }
+    fun sellOutBefore(days: Int): Boolean = sellIn <= days
+
+    fun isSellOut(): Boolean = sellIn < 0
+
 }
