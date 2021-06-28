@@ -2,12 +2,12 @@ package com.gildedrose.depreciator
 
 import com.gildedrose.Item
 
-class NormalItemDepreciator(item: Item) : ItemDepreciator(item) {
-    override fun calculateSellInOnDayPass() {
+class ConjuredDepreciationProcessor(item: Item) : ItemDepreciationProcessor(item) {
+    override fun updateSellInOneCycle() {
         item.sellIn--
     }
 
-    override fun calculateQualityOnDayPass() {
+    override fun updateQualityOneCycle() {
         decreaseQualityIfPossible()
         if (item.sellIn < 0) {
             decreaseQualityIfPossible()
@@ -15,8 +15,10 @@ class NormalItemDepreciator(item: Item) : ItemDepreciator(item) {
     }
 
     private fun decreaseQualityIfPossible() {
-        if (item.quality > 0) {
-            item.quality--
+        if (item.quality > 1) {
+            item.quality -= 2
+        } else {
+            item.quality = 0
         }
     }
 }

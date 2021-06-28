@@ -4,7 +4,7 @@ class GildedRose(var items: Array<Item>) {
 
     fun updateQuality() {
         items.forEach { item ->
-            ItemDepreciatorFactory.createDepreciator(item).passOneDay()
+            ItemDepreciationProcessorFactory.createDepreciationProcessor(item).processDepreciationCycle()
         }
     }
 }

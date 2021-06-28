@@ -2,12 +2,12 @@ package com.gildedrose.depreciator
 
 import com.gildedrose.Item
 
-class AgedBrieDepreciator(item: Item) : ItemDepreciator(item) {
-    override fun calculateSellInOnDayPass() {
+class AgedBrieDepreciationProcessor(item: Item) : ItemDepreciationProcessor(item) {
+    override fun updateSellInOneCycle() {
         item.sellIn--
     }
 
-    override fun calculateQualityOnDayPass() {
+    override fun updateQualityOneCycle() {
         increaseQualityIfPossible()
         if (item.sellIn < 0) {
             increaseQualityIfPossible()

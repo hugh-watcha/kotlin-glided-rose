@@ -2,12 +2,12 @@ package com.gildedrose.depreciator
 
 import com.gildedrose.Item
 
-class BackstagePassesDepreciator(item: Item) : ItemDepreciator(item) {
-    override fun calculateSellInOnDayPass() {
+class BackstagePassesDepreciationProcessor(item: Item) : ItemDepreciationProcessor(item) {
+    override fun updateSellInOneCycle() {
         item.sellIn--
     }
 
-    override fun calculateQualityOnDayPass() {
+    override fun updateQualityOneCycle() {
         val sellIn = item.sellIn
         // sellIn 이 줄어드는 타이밍에 따라 여기 기준 숫자들이 달라진다.
         if (sellIn >= 0) {
