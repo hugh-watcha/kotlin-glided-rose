@@ -1,10 +1,12 @@
 package com.gildedrose.depreciator
 
 import com.gildedrose.Item
+import com.gildedrose.decreaseSellIn
+import com.gildedrose.increaseQuality
 
 class BackstagePassesDepreciationProcessor(item: Item) : ItemDepreciationProcessor(item) {
     override fun updateSellInOneCycle() {
-        item.sellIn--
+        item.decreaseSellIn()
     }
 
     override fun updateQualityOneCycle() {
@@ -24,8 +26,6 @@ class BackstagePassesDepreciationProcessor(item: Item) : ItemDepreciationProcess
     }
 
     private fun increaseQualityIfPossible() {
-        if (item.quality < 50) {
-            item.quality++
-        }
+        item.increaseQuality(50)
     }
 }
